@@ -10,7 +10,6 @@ import image6 from "./images/6.jpg";
 
 const items = ["banana", "apple", "orange", "papaya"];
 const images = [image0, image1, image2, image3, image4, image5, image6];
-
 const newGuessWord = () => items[Math.floor(Math.random() * items.length)];
 var alphabets = "abcdefghijklmnopqrstuvwxyz".split("");
 
@@ -21,7 +20,7 @@ class HangmanImage extends Component {
   }
 
   handleAplhabetClick = alphabet => {
-    if (this.state.lifes <= 0) {
+    if (this.state.lifes >= 6) {
       return;
     }
     this.setState(prevState => ({
@@ -39,11 +38,12 @@ class HangmanImage extends Component {
   };
 
   render() {
+    
     const secretWordLetterList = this.state.secretWord.split("");
     return (
       <div>
         Guesses Left : {this.state.lifes}
-        <div className="center">
+        <div className="center">''
           <img
             src={images[this.nextImageToBeShown()]}
             className="image_cenrer"
@@ -59,7 +59,7 @@ class HangmanImage extends Component {
           )}
         </div>
         <div id="button_set">
-          {this.state.lifes === 0
+          {this.state.lifes === 6
             ? null
             : alphabets.map(alphabet => (
                 <button
@@ -83,14 +83,14 @@ class HangmanImage extends Component {
   }
 
   nextImageToBeShown() {
-    return images.length - 1 - this.state.lifes;
+    return  this.state.lifes;
   }
 }
 export default HangmanImage;
 
 function getInitialState() {
   return {
-    lifes: images.length - 1,
+    lifes: 0,
     secretWord: newGuessWord(),
     alreadySelectedAlphabets: ""
   };
@@ -99,5 +99,5 @@ function getInitialState() {
 function decreaseLifeIfGuessIsWrong(secretWord, secretLetter, prevState) {
   return secretWord.includes(secretLetter)
     ? prevState.lifes
-    : prevState.lifes - 1;
+    : prevState.lifes +1;
 }

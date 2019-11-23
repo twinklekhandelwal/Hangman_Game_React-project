@@ -8,12 +8,11 @@ import image5 from './images/4.jpg';
 import image6 from './images/5.jpg';
 import image7 from './images/6.jpg';
 
-const items = ['banana', 'apple', 'orange', 'pyaya'];
+const items = ['Banana', 'Apple', 'Orange', 'Papaya',"Mango","Guava","Grapes","Watermelon"];
 const image=[image1,image2,image3,image4,image5,image6,image7]
 
-const gusse_word = items[Math.floor(Math.random() * items.length)];
+let gusse_word =() => items[Math.floor(Math.random() * items.length)];
 console.log(gusse_word);
-var random_word = gusse_word.split('');
 var words = 'abcdefghijklmnopqrstuvwxyz';
 var word = words.split('');
 
@@ -22,24 +21,36 @@ var word = words.split('');
 class HangmanImage extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { letter: '', lives:image.length-1};
+		this.state = {
+			letter: '',lives:image.length-1,
+			secretWord: gusse_word(),
+			
+			
+		};
 	}
 
 	handle = alphabet => {
-		this.setState(prevState => ({ letter: prevState.letter + alphabet  }));
-		// console.log(this.state.lives)
-		gusse_word.includes(this.state.letter)
 		
-	};
+		this.setState( prevState => ({ letter: prevState.letter + alphabet,
+			lives:this.state.secretWord.includes(alphabet) ? prevState.lives: prevState.lives - 1
+		}));
+		
+		 const word = this.state.secretWord.replace(/alphabet/g, '');
+		console.log(word)
+		console.log(alphabet)
+		
+	}
+	
 
 	handleButtonClick = () => {
-		this.setState({show:true})
+		this.setState({letter: '',lives:image.length-1,secretWord: gusse_word(),})
 	};
-
-	render() {
+	
+		render() {
+			
 		// const {gusse_word, letter} = this.state;
-		const word_cheak = gusse_word.replace(new RegExp('[^' + this.state.letter + ']', 'g'), '-');
-		;
+		const word_cheak =this.state.secretWord.replace(new RegExp('[^' + this.state.letter + ']', 'g'), '-');
+		// console.log(this.state.gWord, "PJ")
 		return (
 			<div>
 				<h1>Guess word:{this.state.lives}</h1>
@@ -57,7 +68,8 @@ class HangmanImage extends Component {
 				
 				</div>
 				<div id="button_set">
-					{word.map(alphabet => (
+				{this.state.lives===0?<h1>you lost{this.state.secretWord}</h1>:
+					word.map(alphabet => (
 						<button
 							onClick={() => this.handle(alphabet)}
 							className="set_alphabate"
@@ -65,6 +77,7 @@ class HangmanImage extends Component {
 							{alphabet}
 						</button>
 					))}
+					
 
 					<br />
 
@@ -77,4 +90,6 @@ class HangmanImage extends Component {
 		);
 	}
 }
+// function decreaseLifeIfGuessIsWrong(alphabet,prevState,gusse_word) {
+// 	return 
 export default HangmanImage;
