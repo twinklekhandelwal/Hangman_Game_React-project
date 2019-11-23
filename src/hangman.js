@@ -8,13 +8,13 @@ import image5 from './images/4.jpg';
 import image6 from './images/5.jpg';
 import image7 from './images/6.jpg';
 
-const items = ['Banana', 'Apple', 'Orange', 'Papaya',"Mango","Guava","Grapes","Watermelon"];
-const image=[image1,image2,image3,image4,image5,image6,image7]
+const list_Items = ['Banana', 'Apple', 'Orange', 'Papaya',"Mango","Guava","Grapes","Watermelon"];
+const hangman_Image=[image1,image2,image3,image4,image5,image6,image7]
 
-let gusse_word =() => items[Math.floor(Math.random() * items.length)];
+let gusse_word =() => list_Items[Math.floor(Math.random() *  list_Items.length)];
 console.log(gusse_word);
-var words = 'abcdefghijklmnopqrstuvwxyz';
-var word = words.split('');
+var alphabets = 'abcdefghijklmnopqrstuvwxyz'.split('');
+// var word = alphabets.split('');
 
 // console.log(gusse)
 
@@ -22,7 +22,7 @@ class HangmanImage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			letter: '',lives:image.length-1,
+			letter: '',lives:hangman_Image.length-1,
 			secretWord: gusse_word(),
 			
 			
@@ -43,7 +43,7 @@ class HangmanImage extends Component {
 	
 
 	handleButtonClick = () => {
-		this.setState({letter: '',lives:image.length-1,secretWord: gusse_word(),})
+		this.setState({letter: '',lives:hangman_Image.length-1,secretWord: gusse_word(),})
 	};
 	
 		render() {
@@ -57,7 +57,7 @@ class HangmanImage extends Component {
 				
 				<div className="center">
 				
-					<img src={image[image.length-this.state.lives-1]} className="image_cenrer" alt="image1" />
+					<img src={ hangman_Image[ hangman_Image.length-this.state.lives-1]} className="image_cenrer" alt="image1" />
 					<p className="text">Guess the Programming Language ?</p>
 					
 
@@ -69,12 +69,12 @@ class HangmanImage extends Component {
 				</div>
 				<div id="button_set">
 				{this.state.lives===0?<h1>you lost{this.state.secretWord}</h1>:
-					word.map(alphabet => (
+					alphabets.map(selected_Alphabet => (
 						<button
-							onClick={() => this.handle(alphabet)}
+							onClick={() => this.handle(selected_Alphabet)}
 							className="set_alphabate"
-							disabled={this.state.letter.includes(alphabet)}>
-							{alphabet}
+							disabled={this.state.letter.includes(selected_Alphabet)}>
+							{selected_Alphabet}
 						</button>
 					))}
 					
