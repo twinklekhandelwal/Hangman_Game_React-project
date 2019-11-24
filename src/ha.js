@@ -51,10 +51,11 @@ class HangmanImage extends Component {
           />
           <p className="text">Guess the Word?</p>
           {secretWordLetterList.map(alphabet =>
-            this.state.alreadySelectedAlphabets.includes(alphabet) ? (
-              <span> {alphabet} </span>
+            !this.state.alreadySelectedAlphabets.includes(alphabet) ? (
+              <span>_</span>
             ) : (
-              <span> _ </span>
+              <span> {alphabet} </span>
+              
             )
           )}
         </div>
