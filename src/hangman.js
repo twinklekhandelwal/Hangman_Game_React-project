@@ -18,13 +18,13 @@ var alphabets = 'abcdefghijklmnopqrstuvwxyz'.split('');
 class HangmanImage extends Component {
 	constructor(props) {
 		super(props);
-		var left_GuessWord = gusse_word();
+		var leftGuessWord = gusse_word();
 		this.state = {
 			letter: '',
 
 			lives: hangman_Image.length - 1,
-			secretWord: left_GuessWord,
-			filteredWord: left_GuessWord,
+			secretWord: leftGuessWord,
+			filteredWord: leftGuessWord,
 		};
 	}
 
@@ -40,13 +40,13 @@ class HangmanImage extends Component {
 	};
 
 	handleButtonClick = () => {
-		var left_GuessWord = gusse_word();
+		var leftGuessWord = gusse_word();
 		this.setState({
 			letter: '',
 			lives: hangman_Image.length - 1,
-			secretWord: left_GuessWord,
-			filteredWord: left_GuessWord,
-			guess_WordLength: left_GuessWord.length,
+			secretWord: leftGuessWord,
+			filteredWord: leftGuessWord,
+			guessWordLength: leftGuessWord.length,
 		});
 	};
 
@@ -55,23 +55,23 @@ class HangmanImage extends Component {
 
 		return (
 			<div>
-				<h1>Guess word:{this.state.lives}</h1>
+				<h1 className="guess_word">Guess word:{this.state.lives}</h1>
 
 				<div className="center">
 					<img
 						src={hangman_Image[hangman_Image.length - this.state.lives - 1]}
 						className="image_cenrer"
-						alt="image1"
-					/>
-					<p className="text">Guess the Programming Language ?</p>
+						alt="image1"/>
+					
+					<h2 className="text">Guess the Fruits Name ?</h2>
 
 					{this.state.lives === 0 ? <span>{this.state.secretWord}</span> : <span>{word_cheak}</span>}
 				</div>
 
 				<div id="button_set">
 					{this.state.lives === 0 ? <h1>you lost</h1> : null}
-					{this.state.guess_WordLength === 0 ? <h1>you won</h1> : null}
-					{this.state.lives === 0 || this.state.guess_WordLength === 0
+					{this.state.guessWordLength === 0 ? <h1>you won</h1> : null}
+					{this.state.lives === 0 || this.state.guessWordLength === 0
 						? null
 						: alphabets.map(selected_Alphabet => (
 								<button
