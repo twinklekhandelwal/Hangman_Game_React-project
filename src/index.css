@@ -1,5 +1,5 @@
 body {
-   background-color:black; 
+   background-color:black;  
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -16,6 +16,12 @@ code {
   /* position: absolute; */
   margin-left: 10%; 
 
+}
+.lost{
+  color:white;
+}
+.won{
+  color:white;
 }
 .guess_word{
   color:white;

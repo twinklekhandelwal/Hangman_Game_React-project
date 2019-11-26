@@ -33,7 +33,7 @@ class HangmanImage extends Component {
 			letter: prevState.letter + selected_Alphabet,
 			lives: this.state.secretWord.includes(selected_Alphabet) ? prevState.lives : prevState.lives - 1,
 			filteredWord: word,
-			guess_WordLength: word.length,
+			guessWordLength: word.length,
 		}));
 
 		const word = this.state.filteredWord.replace(new RegExp(selected_Alphabet, 'g'), '');
@@ -46,7 +46,7 @@ class HangmanImage extends Component {
 			lives: hangman_Image.length - 1,
 			secretWord: leftGuessWord,
 			filteredWord: leftGuessWord,
-			guessWordLength: leftGuessWord.length,
+			guessWordLength: leftGuessWord.length
 		});
 	};
 
@@ -69,8 +69,8 @@ class HangmanImage extends Component {
 				</div>
 
 				<div id="button_set">
-					{this.state.lives === 0 ? <h1>you lost</h1> : null}
-					{this.state.guessWordLength === 0 ? <h1>you won</h1> : null}
+					{this.state.lives === 0 ? <h1 className="lost">you lost</h1> : null}
+					{this.state.guessWordLength === 0 ? <h1 className="won">you won</h1> : null}
 					{this.state.lives === 0 || this.state.guessWordLength === 0
 						? null
 						: alphabets.map(selected_Alphabet => (
