@@ -1,3 +1,4 @@
+![Test Image 1](src/images/1.jpg)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
